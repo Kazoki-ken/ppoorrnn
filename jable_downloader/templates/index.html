@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Yuklash</title>
+    <title>Jable Video Yuklash</title>
     <style>
         body { font-family: sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; text-align: center; }
         input[type="text"] { width: 80%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; }
@@ -15,7 +15,7 @@
     </style>
 </head>
 <body>
-    <h1>Video Yuklash</h1>
+    <h1>JableTV Video Yuklash</h1>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
@@ -26,11 +26,11 @@
     {% endwith %}
 
     <form method="POST">
-        <input type="text" name="video_url" placeholder="Video linkini bu yerga tashlang (PornHub, YouTube, etc.)" required>
+        <input type="text" name="video_url" placeholder="Jable video linkini tashlang (masalan: https://jable.tv/videos/...)" required>
         <br>
         <button type="submit">Yuklash</button>
     </form>
 
-    <p><small>Videolar <code>downloads</code> papkasiga saqlanadi.</small></p>
+    <p><small>Yuklash jarayonini terminalda kuzatishingiz mumkin.</small></p>
 </body>
 </html>
