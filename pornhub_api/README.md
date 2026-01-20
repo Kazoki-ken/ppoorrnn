@@ -1,6 +1,8 @@
-# PornHub Unofficial API (Fixed)
+# PornHub Unofficial API (Fixed) & Video Downloader
 
-Ushbu kutubxona PornHub.com saytidan ma'lumotlarni (videolar va aktyorlar) olish uchun mo'ljallangan. Ushbu versiya yangi sayt dizayniga moslashtirilgan.
+Ushbu loyiha ikki qismdan iborat:
+1.  **API:** PornHub.com saytidan ma'lumotlarni (videolar va aktyorlar) olish.
+2.  **Web Downloader:** Har qanday video linkini (PornHub, YouTube va boshqalar) yuklab olish uchun oddiy web interfeys.
 
 ## O'rnatish (Installation)
 
@@ -10,26 +12,27 @@ Ishlatishdan oldin kerakli kutubxonalarni o'rnatishingiz shart. Terminalda quyid
 pip install -r requirements.txt
 ```
 
-Yoki alohida-alohida o'rnatish:
+## 1. Web Video Yuklagichni ishlatish (Tavsiya etiladi)
 
-```bash
-pip install beautifulsoup4 requests lxml
-```
+Bu eng oson yo'li. Videolarni to'g'ridan-to'g'ri yuklash uchun:
 
-## Ishlatish (Usage)
+1.  Terminalda quyidagi buyruqni yozing:
+    ```bash
+    python app.py
+    ```
+2.  Brauzeringizni oching va manzil qatoriga yozing: `http://127.0.0.1:5000`
+3.  Video linkini kiritib "Yuklash" tugmasini bosing.
+4.  Video `downloads` papkasiga tushadi.
 
-Kutubxonani ishga tushirish uchun tayyor `final_demo.py` faylidan foydalanishingiz mumkin.
+## 2. API Kodini ishlatish (Dasturchilar uchun)
 
-Terminalda ushbu papkaga kirib, quyidagi buyruqni yozing:
+Agar sizga faqat ma'lumotlar (json) kerak bo'lsa:
 
 ```bash
 python final_demo.py
 ```
-(Yoki `python3 final_demo.py`)
 
 ### Namuna kod
-
-O'zingizning skriptingizda quyidagicha ishlatishingiz mumkin:
 
 ```python
 import pornhub
@@ -44,19 +47,12 @@ videos = client.getVideos(quantity=5, page=1)
 for video in videos:
     print(f"Sarlavha: {video.get('title')}")
     print(f"Link: {video.get('url')}")
-
-# 2. Aktyorlarni olish
-print("\nAktyorlar olinmoqda...")
-stars = client.getStars(quantity=5, page=1)
-
-for star in stars:
-    print(f"Ism: {star.get('name')}")
-    print(f"Link: {star.get('url')}")
 ```
 
 ## Troubleshooting (Muammolar va yechimlar)
 
-Agar `ModuleNotFoundError: No module named 'bs4'` xatosini olsangiz, demak `beautifulsoup4` o'rnatilmagan. Yuqoridagi **O'rnatish** bo'limiga qarang.
+*   `ModuleNotFoundError`: Kutubxonalar o'rnatilmagan. `pip install -r requirements.txt` buyrug'ini qayta ishlating.
+*   Yuklashda xatolik bo'lsa: `yt-dlp` versiyasi eski bo'lishi mumkin. `pip install --upgrade yt-dlp` qiling.
 
 ---
 Original repository: [sskender/pornhub-api](https://github.com/sskender/pornhub-api)
