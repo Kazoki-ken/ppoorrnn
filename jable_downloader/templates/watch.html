@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        body { font-family: sans-serif; max-width: 900px; margin: 20px auto; padding: 20px; text-align: center; background-color: #000; color: #fff; }
+        .nav { margin-bottom: 20px; }
+        .nav a { margin: 0 10px; text-decoration: none; color: #aaa; font-weight: bold; }
+        .nav a:hover { color: #fff; }
+        video { width: 100%; max-height: 80vh; border: 1px solid #333; }
+        h2 { margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="/">Bosh sahifa</a>
+        <a href="/list">Orqaga (Ro'yxat)</a>
+    </div>
+
+    <video controls autoplay>
+        <source src="{{ video_src }}" type="video/mp4">
+        Brauzeringiz video formatini qo'llab-quvvatlamaydi.
+    </video>
+
+    <h2>{{ title }}</h2>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuklangan Videolar</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .nav { margin-bottom: 20px; text-align: center;}
+        .nav a { margin: 0 10px; text-decoration: none; color: #007bff; font-weight: bold; }
+        ul { list-style-type: none; padding: 0; }
+        li { background: #f9f9f9; margin: 10px 0; padding: 15px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #eee; }
+        .video-name { font-weight: bold; }
+        .watch-btn { background-color: #007bff; color: white; padding: 8px 15px; text-decoration: none; border-radius: 4px; }
+        .watch-btn:hover { background-color: #0056b3; }
+        .empty { text-align: center; color: #777; margin-top: 50px; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="/">Bosh sahifa</a>
+        <a href="/list">Yuklanganlar</a>
+    </div>
+
+    <h1 style="text-align: center;">Yuklangan Videolar</h1>
+
+    {% if videos %}
+        <ul>
+            {% for video in videos %}
+                <li>
+                    <span class="video-name">{{ video.filename }}</span>
+                    <a href="{{ url_for('player', folder=video.folder, filename=video.filename) }}" class="watch-btn">Ko'rish</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="empty">
+            <h3>Hozircha videolar yo'q.</h3>
+            <p>Bosh sahifadan video yuklang.</p>
+        </div>
+    {% endif %}
+
+</body>
+</html>

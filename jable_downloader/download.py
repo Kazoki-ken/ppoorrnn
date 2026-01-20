@@ -15,28 +15,28 @@ from args import *
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-def download(url):
-  encode = 0 #不轉檔
-  action = input('要轉檔嗎?[y/n]')
-  if action.lower() == 'y':
-    action = input('選擇轉檔方案[1:僅轉換格式(默認,推薦) 2:NVIDIA GPU 轉檔 3:CPU 轉檔]')
-    if action == '2':
-       encode = 2 #GPU轉檔
-    elif action == '3':
-       encode = 3 #CPU轉檔
-    else:
-       encode = 1 #快速無損轉檔
-
+def download(url, encode=0, base_path=None):
+  # encode param: 0=No convert, 1=Fast, 2=GPU, 3=CPU
   print('正在下載影片: ' + url)
   # 建立番號資料夾
   urlSplit = url.split('/')
   dirName = urlSplit[-2]
-  if os.path.exists(f'{dirName}/{dirName}.mp4'):
+
+  # Determine root folder
+  cwd = os.getcwd()
+  if base_path:
+      cwd = base_path
+      if not os.path.exists(cwd):
+          os.makedirs(cwd)
+
+  if os.path.exists(os.path.join(cwd, dirName, f'{dirName}.mp4')):
     print('番號資料夾已存在, 跳過...')
     return
-  if not os.path.exists(dirName):
-      os.makedirs(dirName)
-  folderPath = os.path.join(os.getcwd(), dirName)
+
+  target_dir = os.path.join(cwd, dirName)
+  if not os.path.exists(target_dir):
+      os.makedirs(target_dir)
+  folderPath = target_dir
 
   #配置Selenium參數
   options = Options()
